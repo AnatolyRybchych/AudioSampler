@@ -1,0 +1,15 @@
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\bin\Debug\net6.0\AudioSampler.exe
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\bin\Debug\net6.0\AudioSampler.deps.json
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\bin\Debug\net6.0\AudioSampler.runtimeconfig.json
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\bin\Debug\net6.0\AudioSampler.dll
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\bin\Debug\net6.0\AudioSampler.pdb
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.csproj.AssemblyReference.cache
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.AssemblyInfoInputs.cache
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.AssemblyInfo.cs
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.csproj.CoreCompileInputs.cache
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.dll
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\refint\AudioSampler.dll
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.pdb
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\AudioSampler.genruntimeconfig.cache
+C:\Users\Velichaisyi\Desktop\AudioSampler\AudioSampler\obj\Debug\net6.0\ref\AudioSampler.dll
