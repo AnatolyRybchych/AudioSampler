@@ -97,10 +97,10 @@ namespace AudioSampler.WaveMath
 
         public class WaveSample
         {
-            public ClamedFloat SampleLeft;
-            public ClamedFloat SampleRight;
+            public ClampedFloat SampleLeft;
+            public ClampedFloat SampleRight;
 
-            public WaveSample(ClamedFloat sampleLeft, ClamedFloat sampleRight)
+            public WaveSample(ClampedFloat sampleLeft, ClampedFloat sampleRight)
             {
                 SampleLeft = sampleLeft;
                 SampleRight = sampleRight;
