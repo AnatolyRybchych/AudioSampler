@@ -23,7 +23,10 @@ namespace AudioSampler.WaveMath
         {
             int srcSampleRate = (int)((double)TimeSpan.TicksPerSecond / Period.Ticks);
 
+            //ignore samples that not on discretization points
             List<WaveSample> dstSamples = Samples.Where((sample, id) => id % ((srcSampleRate / sampleRate) + 1) == 0).ToList();
+
+            //add singleone sample if empty to avoid errors
             if (dstSamples.Count == 0) dstSamples.Add(new WaveSample(0.0, 0.0));
 
             TimeSpan dstSampleDuration = TimeSpan.FromSeconds(1.0 / sampleRate);
@@ -32,6 +35,7 @@ namespace AudioSampler.WaveMath
 
             if(requiredSamplesCount < dstSamples.Count)
             {
+                //remove samples out of duration
                 dstSamples = dstSamples.Where((s,i) => i < requiredSamplesCount).ToList();
             }
             else
