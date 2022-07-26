@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -9,15 +10,47 @@ namespace AudioSampler.AudioFile
 {
     public class Wave
     {
+		public WavHeader Header { get; private set; }
+		public byte[] Data { get; private set; }
 
+        public Wave(Stream src)
+        {
+			Header = new WavHeader(src);
+			Data = new byte[(int)Header._Subchunk2Size];
+			src.Read(Data, 0, (int)Header._Subchunk2Size);
+        }
+
+        public Wave(WavHeader header, byte[] data)
+        {
+			Header = header;
+			Data = data;
+        }
+
+		public void Write(Stream dst)
+        {
+			Header.Write(dst);
+			dst.Write(Data);
+        }
+
+		public byte[] GetDataWithHeader()
+        {
+			byte[] result = new byte[Header._Subchunk2Size + Marshal.SizeOf<Wave.WavHeader>()];
+			MemoryStream s = new MemoryStream(result);
+			Write(s);
+			s.Dispose();
+			return result;
+        }
 
 		[StructLayout(LayoutKind.Sequential)]
-		internal class WavHeader
+		public class WavHeader
 		{
 			public const UInt32 ChunkIdRIFF = 0x46464952;
 			public const UInt32 ChunkFormatWave = 0x45564157;
 			public const UInt32 SubchunkIdFmt = 0x20746d66;
+			public const UInt32 SubchunkFmtSize = 16;
 			public const UInt16 AudioFormatPCM = 1;
+			public const UInt32 SubchunkIdData = 0x61746164;
+			public static int WavHeaderSize => Marshal.SizeOf<WavHeader>();
 
 			public WavHeader(Stream src)
             {
@@ -38,12 +71,14 @@ namespace AudioSampler.AudioFile
 				_ChunkSize = (uint)(4 + (8 + _Subchunk1Size) + (8 + dataSize));
 				_Format = ChunkFormatWave;
 				_Subchunk1Id = SubchunkIdFmt;
+				_Subchunk1Size = SubchunkFmtSize;
 				_AudioFormat = AudioFormatPCM;
 				_NumChannels = (UInt16)numChannels;
 				_SampleRate = (UInt16)sampleRate;
 				_ByteRate = (UInt32)(sampleRate * numChannels * bitsPerSample / 8);
 				_BlockAlign = (UInt16)(bitsPerSample * numChannels / 8);
 				_BitsPerSample = (UInt16)(bitsPerSample);
+				_Subchunk2Id = (UInt32)SubchunkIdData;
 
 				_Subchunk2Size = (uint)dataSize;
 			}
@@ -58,6 +93,8 @@ namespace AudioSampler.AudioFile
 				byte[] data = new byte[headerSize];
 				Marshal.Copy(headerPtr, data, 0, data.Length);
 				Marshal.FreeHGlobal(headerPtr);
+
+				dst.Write(data, 0, data.Length);
 			}
 
 			public UInt32 _ChunkId;
